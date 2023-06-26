@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "north-commerce/product-slider",
+  "version": "0.1.0",
+  "title": "Product Slider",
+  "category": "north-commerce",
+  "icon": "smiley",
+  "description": "Product Slider For NorthCommerce",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "category": {
+      "type": "string",
+      "default": "__all__"
+    },
+    "titleTextColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "priceTextColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "flickityOptions": {
+      "type": "object",
+      "default": {
+        "cellAlign": "left",
+        "contain": true,
+        "groupCells": true,
+        "freeScroll": false,
+        "wrapAround": true,
+        "autoPlay": false,
+        "pauseAutoPlayOnHover": false,
+        "initialIndex": 0,
+        "prevNextButtons": true,
+        "pageDots": true
+      }
+    }
+  },
+  "textdomain": "north-commerce-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

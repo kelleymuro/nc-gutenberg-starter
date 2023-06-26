@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "north-commerce/product",
+  "version": "0.1.0",
+  "title": "Product",
+  "category": "widgets",
+  "icon": "smiley",
+  "description": "North Commerce Product Block",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "product": {
+      "type": "object",
+      "default": {
+        "id": 0,
+        "name": "Default name",
+        "price": 10
+      }
+    },
+    "name": {
+      "type": "string",
+      "default": "Default name (text)"
+    }
+  },
+  "providesContext": {
+    "north-commerce/product": "product",
+    "north-commerce/product/name": "name"
+  },
+  "textdomain": "product",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

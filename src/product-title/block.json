@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "north-commerce/product-title",
+  "version": "0.1.0",
+  "title": "Product Title",
+  "category": "widgets",
+  "icon": "smiley",
+  "description": "North Commerce Product Title",
+  "supports": {
+    "html": false
+  },
+  "usesContext": ["north-commerce/product", "north-commerce/product/name"],
+  "textdomain": "product-title",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

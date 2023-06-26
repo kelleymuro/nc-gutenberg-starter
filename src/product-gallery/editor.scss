@@ -1,0 +1,96 @@
+/**
+ * The following styles get applied inside the editor only.
+ */
+
+.wp-block-north-commerce-product-gallery {
+  /*
+====================================
+FIX for editor
+====================================
+*/
+  &.main-wrapper {
+    background: #fff;
+    padding: 0;
+  }
+  a {
+    text-decoration: none;
+  }
+
+  button {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    -webkit-font-smoothing: inherit;
+    border: none;
+    background: transparent;
+    line-height: normal;
+    overflow: visible;
+    text-transform: none;
+    cursor: pointer;
+  }
+
+  .shoe-cnt > p {
+    margin: 0;
+  }
+
+  /***********************************************/
+
+  .container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  @media (min-width: 576px) {
+    .container {
+      width: 540px;
+      max-width: 100%;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      width: 720px;
+      max-width: 100%;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .container {
+      width: 960px;
+      max-width: 100%;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .container {
+      width: 1254px;
+      max-width: 100%;
+    }
+  }
+
+  .seller-cnt p {
+    font-weight: 500;
+    font-size: 14px;
+    color: #000;
+    margin: 3px 0;
+  }
+
+  /**************************************************/
+}
+
+.editor-styles-wrapper .wp-block-north-commerce-product-gallery {
+  /*
+ ====================================
+ FIX for editor
+ ====================================
+ */
+  a {
+    text-decoration: none;
+  }
+}
