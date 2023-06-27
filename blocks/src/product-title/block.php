@@ -2,7 +2,7 @@
 
 function north_commerce_blocks_register_product_title_block(): WP_Block_Type|false {
 	return register_block_type(
-		NORTH_COMMERCE_BLOCKS_PLUGIN_DIR_PATH . 'build/product-title/',
+		get_template_directory(). '/blocks/build/product-title/',
 		[
 			'render_callback' => 'north_commerce_blocks_output_product_title_block',
 		]

@@ -5,7 +5,7 @@
  */
 function north_commerce_blocks_register_product_slider_block(): WP_Block_Type|false {
   return register_block_type(
-    NORTH_COMMERCE_BLOCKS_PLUGIN_DIR_PATH . 'build/product-slider/',
+    get_template_directory(). '/blocks/build/product-slider/',
     [
       'render_callback' => 'north_commerce_blocks_output_product_slider_block',
     ]
