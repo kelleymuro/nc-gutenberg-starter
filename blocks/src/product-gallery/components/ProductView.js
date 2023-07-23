@@ -19,29 +19,18 @@ export default function ProductView({
     }
   };
 
-  return (
-    <div className="col-md-4 col-sm-6">
-      <div className="product-item" data-type="nc-product" data-id={p.getId()}>
-        <a href="#">
-          <img
-            src={p.getFirstImage()}
-            alt="<?php echo esc_html($product['name']) ?>"
-          />
-        </a>
-        <div className="shoe-cnt seller-cnt">
-          <a
-            href="#"
-            style={{
-              color: titleTextColor,
-            }}
-          >
-            {p.getName()}
-          </a>
-          <p style={{ color: priceTextColor }}>{p.getHtmlPrice()}</p>
-        </div>
+  console.log(product.product_images[0].image_url);
 
-        {renderButtons()}
-      </div>
-    </div>
+  return (
+     <div className="nc-productOne">
+        <span id="bestSeller">Best Seller</span>
+        <div className="nc-img">
+          <img src={product.product_images[0].image_url} alt="Product Name" />
+          <img id="hover" src={product.product_images[1].image_url} alt="Product Name" />
+          <button id="open">Quick View</button>
+        </div>
+        <h2>{product.name}</h2>
+        <p>{product.base_price}</p>
+     </div>
   );
 }

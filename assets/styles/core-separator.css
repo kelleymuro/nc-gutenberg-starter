@@ -1,0 +1,5 @@
+hr.is-style-half-width,
+.editor-styles-wrapper hr.is-style-half-width  {
+    width: 50%;
+    margin: 0 auto;
+}
