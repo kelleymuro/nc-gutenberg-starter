@@ -13,7 +13,7 @@
 
  function north_commerce_blocks_register_product_gallery_block(): WP_Block_Type|false {
 	return register_block_type(
-		get_template_directory() . '/north-commerce-blocks/build/product-gallery/',
+		get_template_directory() . '/blocks/build/product-gallery/',
 		[
 			'render_callback' => 'north_commerce_blocks_output_product_gallery_block',
 		]
@@ -30,11 +30,11 @@ add_action('init', 'north_commerce_blocks_register_product_gallery_block');
  * @return string Returns the block content.
  */
 function north_commerce_blocks_output_product_gallery_block($attributes): string {
-	$title_text_color = $attributes['titleTextColor'] ?? 'inherit';
-	$price_text_color = $attributes['priceTextColor'] ?? 'inherit';
-	$add_to_cart_text   = $attributes['addToCartText'] ?? 'Add To Cart';
+	// $title_text_color = $attributes['titleTextColor'] ?? 'inherit';
+	// $price_text_color = $attributes['priceTextColor'] ?? 'inherit';
+	// $add_to_cart_text   = $attributes['addToCartText'] ?? 'Add To Cart';
 	$category_id = $attributes['category'] ?? "__all__";
-	$permalink_base = North_Commerce_Product::get_permalink_base();
+	// $permalink_base = North_Commerce_Product::get_permalink_base();
 
 	$agent = North_Commerce_Db_Agent::instance();
 	$ea = $agent->entityAccess();
@@ -50,38 +50,52 @@ function north_commerce_blocks_output_product_gallery_block($attributes): string
 
 
 ?>
-	<section class="main-wrapper nc-products-list">
-		<div class="container" data-type="product-overview">
-			<div class="shoes-main">
-				<div class="row">
-					<?php foreach ($products as $product) {
-						//error_log(print_r($product, true));
+	<section class="nc-main-wrapper">
+		<div class="nc-grid-container">
+			<div class="nc-wrapper_title">
+                <h1 class="nc-heading">Minis + Kits</h1>
+            </div>
 
-					?>
+			<div class="nc-wrapper_upper">
+				<div class="nc-wrap_left">
+					<ul>
+                        <li><img src="images/filter.png" alt=""></li>
+                        <li>
+                            <select name="" id="">
+                                <option value="">Filter</option>
+                                <option value="">Filter 2</option>
+                                <option value="">Filter 3</option>
+                                <option value="">Filter 4</option>
+                            </select>
+                        </li>
+                        <li> 27 Results </li>
+                    </ul>
+				</div>
 
+				<div class="nc-wrap_right">
+					<div class="nc-wrap_right">
+						<select name="" id="">
+							<option value="">Sort: Price, low to high </option>
+							<option value="">Sort: Price, high to low </option>
+							<option value="">Sort: Price, low to high </option>
+							<option value="">Sort: Price, high to low </option>
+						</select>
+					</div>
+				</div>
+			</div>
 
-
-						<div class="col-md-4 col-sm-6">
-							<div class="product-item" data-type="nc-product" data-id="<?php echo esc_html($product['id']) ?>" <?php /* data-product-type="<?php echo esc_html($product['product_type']['slug']) ?>" */ ?>data-timestamp="<?php echo strtotime($product['created']) ?>">
-								<a href="<?php echo esc_html($permalink_base . $product['slug']) ?>">
-									<img src="<?php echo esc_html($product['product_images'][0]['image_url']) ?>" alt="<?php echo esc_html($product['name']) ?>" />
-								</a>
-								<div class="shoe-cnt seller-cnt">
-									<a href="<?php echo esc_html($permalink_base . $product['slug']) ?>" style="color:<?php echo esc_html($title_text_color); ?>"><?php echo esc_html($product['name']) ?></a>
-									<p style="color:<?php echo esc_html($price_text_color); ?>"><?php echo North_Commerce_Settings::formatted_price($product['base_price']) ?></p>
-								</div>
-
-								<?php if (count($product['product_options']) > 1) { ?>
-
-									<a href="<?php echo esc_html($permalink_base . $product['slug']) ?>">View Options</a>
-
-								<?php } else {  ?>
-
-									<button class="cta-button add-to-cart" data-add-to-cart-action><?php echo $add_to_cart_text ?></button>
-
-								<?php }  ?>
-
+			<div class="nc-wrapper-row">
+				<div class="nc-product-grid-3">
+					<?php foreach($products as $product) { ?>
+						<div class="nc-productOne">
+							<span id="bestSeller">Best Seller</span>
+							<div class="nc-img">
+								<img src="<?php echo $product['product_images'][0]['image_url'] ?>" alt="Product Name" />
+								<img id="hover" src="<?php echo $product['product_images'][1]['image_url'] ?>" alt="Product Name" />
+								<button id="open">Quick View</button>
 							</div>
+							<h2><?php echo $product['name']?></h2>
+							<p><?php echo $product['base_price']?></p>
 						</div>
 					<?php } ?>
 				</div>

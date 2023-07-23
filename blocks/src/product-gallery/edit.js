@@ -8,6 +8,9 @@ import ProductView from "./components/ProductView";
 import ProductSliderInspectorControls from "../product-slider/controls/ProductSliderInspectorControls";
 import API from "../api";
 import ProductGalleryInspectorControls from "./controls/ProductGalleryInspectorControls";
+import CollectionTitle from "./components/CollectionTitle";
+import SortFilter from "./components/SortFilter";
+import SortPrice from "./components/SortPrice";
 
 export default function Edit(props) {
   const { attributes, setAttributes } = props;
@@ -73,11 +76,16 @@ export default function Edit(props) {
     <>
       <ProductGalleryInspectorControls {...props} />
       <section
-        {...useBlockProps({ className: "main-wrapper nc-products-list" })}
+        {...useBlockProps({ className: "nc-main-wrapper" })}
       >
-        <div className="container" data-type="product-overview">
-          <div className="shoes-main">
-            <div className="row">{productsRenderer()}</div>
+        <div className="nc-grid-container" data-type="product-overview">
+          <CollectionTitle/>
+          <div className="nc-wrapper_upper">
+            <SortFilter/>
+            <SortPrice/>
+          </div>
+          <div className="nc-product-grid-3">
+            {productsRenderer()}
           </div>
         </div>
       </section>
