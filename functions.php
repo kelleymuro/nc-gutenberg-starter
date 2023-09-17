@@ -119,7 +119,7 @@ add_action( 'init', __NAMESPACE__ . '\pattern_categories', 9 );
 
 
 function register_all_block_patterns() {
-    if (is_plugin_active('north-commerce-development/north-commerce.php')) {
+    if (is_plugin_active('north-commerce/north-commerce.php') || is_plugin_active('north-commerce-development/north-commerce.php')) {
         $files = glob( get_template_directory() . '/patterns/north-commerce/*.php' );
 
         foreach ($files as $file) {
