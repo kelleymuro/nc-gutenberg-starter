@@ -3,14 +3,13 @@
  * Title: Simple Header
  * Slug: simple-header
  * Description: This is a simple header with a logo and cart icon
- * Categories: Navigation
+ * Categories: navigation
  * Keywords: north commerce, navigation, header
  * Viewport Width: 600
  * Block Types:
  * Post Types:
  * Inserter: true
  */
-
 ?>
 
 

@@ -4,6 +4,9 @@ namespace NorthCommerce\Themes;
 
 require_once __DIR__ . '/inc/editor-customizations.php';
 require_once __DIR__ . '/blocks/blocks.php';
+include_once(ABSPATH . 'wp-admin/includes/plugin.php');
+
+
 
 function setup() {
 
@@ -103,6 +106,9 @@ function pattern_categories() {
 		'testimonial'    => array(
 			'label' => __( 'Testimonials', 'north-commerce' ),
 		),
+		'navigation'    => array(
+			'label' => __( 'Navigation', 'north-commerce' ),
+		),
 	);
 
 	foreach ( $block_pattern_categories as $name => $properties ) {
@@ -110,3 +116,46 @@ function pattern_categories() {
 	}
 }
 add_action( 'init', __NAMESPACE__ . '\pattern_categories', 9 );
+
+
+function register_all_block_patterns() {
+    if (is_plugin_active('north-commerce-development/north-commerce.php')) {
+        $files = glob( get_template_directory() . '/patterns/north-commerce/*.php' );
+
+        foreach ($files as $file) {
+            $filename = basename($file, '.php');
+            $pattern_content = file_get_contents($file);
+            
+            // Read the meta-data from the PHP comments
+            preg_match_all('/\*\s*(Title|Slug|Description|Categories|Keywords):\s*(.*)/', $pattern_content, $matches, PREG_SET_ORDER);
+
+            $metadata = [];
+            foreach ($matches as $match) {
+                $metadata[$match[1]] = $match[2];
+            }
+			
+
+			$categories = isset($metadata['Categories']) ? trim($metadata['Categories']) : '';
+			$keywords = isset($metadata['Keywords']) ? trim($metadata['Keywords']) : '';
+			
+			$categories_array = (!empty($categories)) ? explode(',', str_replace(' ', '', $categories)) : array();
+			$keywords_array = (!empty($keywords)) ? explode(',', str_replace(' ', '', $keywords)) : array();
+
+		
+            register_block_pattern(
+                "north-commerce/{$metadata['Slug']}",
+                array(
+                    'title'       => __($metadata['Title'], 'north-commerce'),
+                    'description' => __($metadata['Description'], 'north-commerce'),
+                    'content'     => $pattern_content,
+                    'categories'  => $categories_array,
+                    'keywords'    => $keywords_array,
+                )
+            );
+        }
+
+    } else {
+        error_log('North Commerce plugin is not active, so the block patterns were not registered.');
+    }
+}
+add_action('init', __NAMESPACE__ . '\register_all_block_patterns');
